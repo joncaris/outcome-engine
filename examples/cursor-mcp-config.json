@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "outcome-engine": {
+      "url": "https://mcp-firebase-server.mcpize.run/mcp"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+[dotenv@17.3.1] injecting env (3) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+Server listening on port 3050
+[DEBUG ROUTER] Received POST request for /mcp (originalUrl: /mcp, path: /mcp)
+[POST /mcp] Triggered for MCPIZE HTTP Native transport
+[DEBUG ROUTER] Received POST request for /mcp (originalUrl: /mcp, path: /mcp)
+[POST /mcp] Triggered for MCPIZE HTTP Native transport
+[DEBUG ROUTER] Received POST request for /mcp (originalUrl: /mcp, path: /mcp)
+[POST /mcp] Triggered for MCPIZE HTTP Native transport
+[TOOL CALL] analyze invoked with args: {"query":"test market data"}
+[TOOL RESULT] analyze → VERIFIED_SUCCESS

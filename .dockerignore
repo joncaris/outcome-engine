@@ -1,0 +1,9 @@
+node_modules
+.env
+.git
+.gitignore
+firebase-debug.log
+server.log
+test-client.js
+BILLING_ROADMAP.md
+.mcpize
