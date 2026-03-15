@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outcome Engine — AI Tools That Only Charge When They Work</title>
+    <meta name="description" content="11 AI-powered MCP tools with pay-per-success billing. Failed calls are free. Verify emails, enrich leads, review code, scrape data — only pay $0.10 when it works.">
+    <meta name="keywords" content="MCP server, AI tools, pay per success, outcome based billing, LangChain tools, CrewAI tools, email verification, lead enrichment, code review">
+    <meta property="og:title" content="Outcome Engine — Only Pay When It Works">
+    <meta property="og:description" content="11 AI-powered MCP tools. $0.10 per success. Failed calls free.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-card-hover: #1a1a28;
+            --border: #1e1e2e;
+            --text: #e4e4ef;
+            --text-muted: #8888a0;
+            --accent: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.15);
+            --green: #22c55e;
+            --green-glow: rgba(34, 197, 94, 0.12);
+            --red: #ef4444;
+            --orange: #f59e0b;
+            --radius: 12px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* Hero */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--green);
+            background: var(--green-glow);
+            margin-bottom: 32px;
+            font-weight: 500;
+        }
+        .badge::before { content: '⚡'; }
+        h1 {
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            margin-bottom: 24px;
+        }
+        h1 span { color: var(--accent); }
+        .hero p {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px var(--accent-glow); }
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        .btn-secondary:hover { border-color: var(--accent); background: var(--accent-glow); }
+
+        /* Pricing comparison */
+        .compare {
+            padding: 80px 0;
+        }
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 700px;
+            margin: 40px auto 0;
+        }
+        .compare-card {
+            padding: 32px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+        .compare-card.old { background: rgba(239, 68, 68, 0.05); }
+        .compare-card.new { background: var(--green-glow); border-color: var(--green); }
+        .compare-card h3 { font-size: 18px; margin-bottom: 16px; }
+        .compare-card.old h3 { color: var(--red); }
+        .compare-card.new h3 { color: var(--green); }
+        .compare-card ul { list-style: none; }
+        .compare-card li {
+            padding: 8px 0;
+            font-size: 15px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .compare-card.old li::before { content: '✗'; color: var(--red); font-weight: 700; }
+        .compare-card.new li::before { content: '✓'; color: var(--green); font-weight: 700; }
+        h2 {
+            font-size: 36px;
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+        .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 18px;
+            margin-top: 12px;
+        }
+
+        /* Tools grid */
+        .tools { padding: 80px 0; }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
+            margin-top: 48px;
+        }
+        .tool-card {
+            padding: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: all 0.2s;
+        }
+        .tool-card:hover { background: var(--bg-card-hover); border-color: var(--accent); transform: translateY(-2px); }
+        .tool-cat {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .tool-card h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .tool-card p { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+        .ai-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--orange);
+            font-size: 11px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        /* Code snippet */
+        .code-section { padding: 80px 0; }
+        .code-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            max-width: 700px;
+            margin: 40px auto 0;
+            position: relative;
+        }
+        .code-block pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            line-height: 1.7;
+            overflow-x: auto;
+            color: var(--text-muted);
+        }
+        .code-block .comment { color: #4a4a6a; }
+        .code-block .string { color: var(--green); }
+        .code-block .key { color: var(--accent); }
+        .code-label {
+            position: absolute;
+            top: -12px;
+            left: 24px;
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Pricing */
+        .pricing { padding: 80px 0; }
+        .price-table {
+            max-width: 500px;
+            margin: 40px auto 0;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 24px;
+            font-size: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        .price-row:last-child { border-bottom: none; }
+        .price-row .cost { font-weight: 700; }
+        .price-row.success { background: var(--green-glow); }
+        .price-row.success .cost { color: var(--green); }
+        .price-row.free .cost { color: var(--text-muted); }
+
+        /* CTA */
+        .final-cta {
+            padding: 100px 0;
+            text-align: center;
+        }
+        .final-cta h2 { margin-bottom: 16px; }
+        .final-cta p { color: var(--text-muted); font-size: 18px; margin-bottom: 40px; }
+        .final-cta .btn { font-size: 18px; padding: 18px 40px; }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            .compare-grid { grid-template-columns: 1fr; }
+            .tools-grid { grid-template-columns: 1fr; }
+            .hero { padding: 80px 0 60px; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="badge">Pay-Per-Success MCP Server</div>
+            <h1>AI tools that<br><span>only charge when they work.</span></h1>
+            <p>11 Gemini-powered MCP tools for your AI agents. $0.10 per success. Failed calls are always free.</p>
+            <div class="cta-group">
+                <a href="https://mcpize.com/mcp/mcp-firebase-server" class="btn btn-primary">Get Started Free →</a>
+                <a href="https://github.com/joncaris/agentic-income" class="btn btn-secondary">View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="compare">
+        <div class="container">
+            <h2>Stop paying for failed calls.</h2>
+            <p class="subtitle">Every other tool server charges per call — even when calls fail.</p>
+            <div class="compare-grid">
+                <div class="compare-card old">
+                    <h3>❌ Traditional MCP</h3>
+                    <ul>
+                        <li>Pay per API call</li>
+                        <li>Failed calls cost money</li>
+                        <li>Monthly minimums</li>
+                        <li>Unpredictable costs</li>
+                    </ul>
+                </div>
+                <div class="compare-card new">
+                    <h3>⚡ Outcome Engine</h3>
+                    <ul>
+                        <li>Pay per verified success</li>
+                        <li>Failures are always free</li>
+                        <li>Zero commitment</li>
+                        <li>Costs = successes × $0.10</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tools">
+        <div class="container">
+            <h2>11 AI-powered tools. One server.</h2>
+            <p class="subtitle">Every tool is enhanced by Gemini 2.0 for intelligent, reliable results.</p>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-cat">🌐 Web Scraping</div>
+                    <h3>scrape_structured <span class="ai-badge">AI</span></h3>
+                    <p>Extract structured data from any URL. Gemini fills gaps when CSS selectors miss.</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-cat">🌐 Web Scraping</div>
+                    <h3>extract_contact <span class="ai-badge">AI</span></h3>
+                    <p>Find emails, phones, socials — even obfuscated formats like "name [at] company".</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-cat">📧 Email & Leads</div>
+                    <h3>verify_email</h3>
+                    <p>MX record validation, disposable email detection, and deliverability scoring.</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-cat">📧 Email & Leads</div>
+                    <h3>enrich_lead <span class="ai-badge">AI</span></h3>
+                    <p>AI sales intelligence brief: industry, pitch angle, tech stack, company size.</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-cat">💻 Code</div>
+                    <h3>run_and_validate</h3>
+                    <p>Sandboxed JavaScript execution with test case validation. Safe and fast.</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-cat">💻 Code</div>
+                    <h3>lint_and_fix <span class="ai-badge">AI</span></h3>
+                    <p>AI code review for any language. Finds semantic bugs, security issues, and provides fixes.</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-cat">📄 Documents</div>
+                    <h3>classify_document <span class="ai-badge">AI</span></h3>
+                    <p>AI document classification with entity extraction — invoices, contracts, resumes, and more.</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-cat">📄 Documents</div>
+                    <h3>summarize_document <span class="ai-badge">AI</span></h3>
+                    <p>AI-powered summarization with configurable length — brief, medium, or detailed.</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-cat">📄 Documents</div>
+                    <h3>ocr_extract</h3>
+                    <p>Extract text content from images and PDFs with embedded text layers.</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-cat">🔗 API</div>
+                    <h3>call_api_verified</h3>
+                    <p>Call REST APIs with response verification. HTTPS enforced, SSRF protected.</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-cat">🔗 API</div>
+                    <h3>webhook_delivery</h3>
+                    <p>Deliver JSON payloads and verify receipt. Confirmed delivery or your money back.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="code-section">
+        <div class="container">
+            <h2>Connect in 30 seconds.</h2>
+            <p class="subtitle">Works with Cursor, Claude Desktop, LangChain, CrewAI, and any MCP client.</p>
+            <div class="code-block">
+                <span class="code-label">Cursor / Claude Desktop</span>
+                <pre><span class="comment">// Add to your MCP config</span>
+{
+  <span class="key">"mcpServers"</span>: {
+    <span class="key">"outcome-engine"</span>: {
+      <span class="key">"url"</span>: <span class="string">"https://mcp-firebase-server.mcpize.run/mcp"</span>
+    }
+  }
+}</pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="container">
+            <h2>Simple pricing. Zero risk.</h2>
+            <p class="subtitle">You literally cannot lose money.</p>
+            <div class="price-table">
+                <div class="price-row success">
+                    <span>Tool call succeeds ✓</span>
+                    <span class="cost">$0.10</span>
+                </div>
+                <div class="price-row free">
+                    <span>Tool call fails</span>
+                    <span class="cost">Free</span>
+                </div>
+                <div class="price-row free">
+                    <span>Tool call times out</span>
+                    <span class="cost">Free</span>
+                </div>
+                <div class="price-row free">
+                    <span>Rate limited</span>
+                    <span class="cost">Free</span>
+                </div>
+                <div class="price-row free">
+                    <span>Discovery / listing</span>
+                    <span class="cost">Free</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to give your agents superpowers?</h2>
+            <p>11 AI tools. Pay only for success. Start in 30 seconds.</p>
+            <a href="https://mcpize.com/mcp/mcp-firebase-server" class="btn btn-primary">Get Started Free →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Outcome Engine — Built with Firebase, Gemini 2.0, and the conviction you shouldn't pay for failure.</p>
+        </div>
+    </footer>
+</body>
+</html>
