@@ -10,9 +10,14 @@ const email = require('./email');
 const codeExecution = require('./code-execution');
 const document = require('./document');
 const apiOrchestration = require('./api-orchestration');
+const sales = require('./sales');
+const data = require('./data');
+const content = require('./content');
+const compliance = require('./compliance');
+const devops = require('./devops');
 
 // Collect all modules
-const modules = [scraping, email, codeExecution, document, apiOrchestration];
+const modules = [scraping, email, codeExecution, document, apiOrchestration, sales, data, content, compliance, devops];
 
 // Build unified definitions array
 const allDefinitions = modules.flatMap(m => m.definitions);
@@ -26,3 +31,4 @@ for (const mod of modules) {
 }
 
 module.exports = { definitions: allDefinitions, handlers: allHandlers };
+

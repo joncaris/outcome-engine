@@ -119,7 +119,6 @@ class CircuitBreaker {
 const rateLimiter = new RateLimiter();
 const circuitBreaker = new CircuitBreaker();
 
-// Per-tool timeout limits (milliseconds)
 const TOOL_TIMEOUTS = {
     scrape_structured: 15000,
     extract_contact: 15000,
@@ -132,6 +131,25 @@ const TOOL_TIMEOUTS = {
     summarize_document: 15000,
     call_api_verified: 10000,
     webhook_delivery: 10000,
+    // Sales tools
+    generate_outreach_email: 15000,
+    analyze_competitor: 15000,
+    // Data tools
+    extract_invoice_data: 15000,
+    generate_sql_query: 15000,
+    validate_json_schema: 10000,
+    data_transform: 5000,
+    generate_test_data: 15000,
+    // Content tools
+    translate_document: 15000,
+    rewrite_text: 15000,
+    sentiment_analysis: 15000,
+    generate_seo_content: 15000,
+    // Compliance tools
+    detect_pii: 15000,
+    // DevOps tools
+    api_health_check: 10000,
+    compare_documents: 15000,
 };
 
 /**
