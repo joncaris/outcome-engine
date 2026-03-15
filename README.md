@@ -179,6 +179,7 @@ Outcome Engine Server
 ## 🔗 Links
 
 - **Marketplace:** [mcpize.com/mcp/mcp-firebase-server](https://mcpize.com/mcp/mcp-firebase-server)
+- **Landing Page:** [joncaris.github.io/outcome-engine](https://joncaris.github.io/outcome-engine/)
 - **Gateway:** `https://mcp-firebase-server.mcpize.run/mcp`
 
 ---
