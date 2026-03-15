@@ -1,7 +1,7 @@
 /**
  * Gemini AI Helper — Shared AI module for all Outcome Engine tools
- * Uses gemini-2.0-flash-lite for maximum cost efficiency
- * Cost: ~$0.0002 per call vs $0.10 charge = 500x margin
+ * Uses gemini-2.5-flash for cost efficiency + quality
+ * Cost: ~$0.0003 per call vs $0.10 charge = 300x margin
  */
 
 const { GoogleGenAI } = require('@google/genai');
@@ -16,7 +16,7 @@ function getClient() {
     return ai;
 }
 
-const MODEL = 'gemini-2.0-flash-lite';
+const MODEL = 'gemini-2.5-flash';
 
 /**
  * Generate text from a prompt. Returns null if AI is unavailable.
